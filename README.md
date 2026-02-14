@@ -262,38 +262,38 @@ xub-portfolio/
 
 ```
 ┌──────────────────────────────────────────────────┐
-│                   index.html                      │
-│              (Semantic Structure)                  │
+│                   index.html                     │
+│              (Semantic Structure)                │
 ├──────────────────────────────────────────────────┤
-│                                                   │
+│                                                  │
 │  ┌─────────────── CSS Layer ──────────────────┐  │
-│  │                                             │  │
-│  │  tokens.css ──→ Design System Variables     │  │
-│  │       ↓                                     │  │
-│  │  base.css ────→ Reset + Global Defaults     │  │
-│  │       ↓                                     │  │
-│  │  utilities.css → Reusable Helpers           │  │
-│  │       ↓                                     │  │
-│  │  effects.css ─→ Animations & Keyframes      │  │
-│  │       ↓                                     │  │
-│  │  components.css → UI Components (BEM)       │  │
-│  │       ↓                                     │  │
-│  │  sections.css ─→ Page Section Layouts       │  │
-│  │                                             │  │
-│  └─────────────────────────────────────────────┘  │
-│                                                   │
+│  │                                            │  │
+│  │  tokens.css ──→ Design System Variables    │  │
+│  │       ↓                                    │  │
+│  │  base.css ────→ Reset + Global Defaults    │  │
+│  │       ↓                                    │  │
+│  │  utilities.css → Reusable Helpers          │  │
+│  │       ↓                                    │  │
+│  │  effects.css ─→ Animations & Keyframes     │  │
+│  │       ↓                                    │  │
+│  │  components.css → UI Components (BEM)      │  │
+│  │       ↓                                    │  │
+│  │  sections.css ─→ Page Section Layouts      │  │
+│  │                                            │  │
+│  └────────────────────────────────────────────┘  │
+│                                                  │
 │  ┌─────────────── JS Layer ───────────────────┐  │
-│  │                                             │  │
-│  │  data.js ─────→ Static Content Data         │  │
-│  │       ↓                                     │  │
-│  │  theme.js ────→ Dark/Light Mode Engine      │  │
-│  │       ↓                                     │  │
-│  │  render.js ───→ Dynamic DOM Rendering       │  │
-│  │       ↓                                     │  │
-│  │  main.js ─────→ Init + Event Handlers       │  │
-│  │                                             │  │
-│  └─────────────────────────────────────────────┘  │
-│                                                   │
+│  │                                            │  │
+│  │  data.js ─────→ Static Content Data        │  │
+│  │       ↓                                    │  │
+│  │  theme.js ────→ Dark/Light Mode Engine     │  │
+│  │       ↓                                    │  │
+│  │  render.js ───→ Dynamic DOM Rendering      │  │
+│  │       ↓                                    │  │
+│  │  main.js ─────→ Init + Event Handlers      │  │
+│  │                                            │  │
+│  └────────────────────────────────────────────┘  │
+│                                                  │
 └──────────────────────────────────────────────────┘
 ```
 
@@ -574,7 +574,7 @@ Edit `css/sections.css` to modify grid layouts:
 - [ ] Easter egg interactions
 - [ ] Analytics dashboard
 
-See the [open issues](https://github.com/username/xub-portfolio/issues) for a full list of proposed features and known bugs.
+See the [open issues](https://github.com/K1BERSTALKER/issues) for a full list of proposed features and known bugs.
 
 ---
 
@@ -656,13 +656,13 @@ SOFTWARE.
 
 <div align="center">
 
-|  Platform   |                   Link                   |
-| :---------: | :--------------------------------------: |
-| 🌐 Website  |        [xub.dev](https://xub.dev)        |
-| 🐦 Twitter  |  [@xubdev](https://twitter.com/xubdev)   |
-| 💼 LinkedIn | [xubdev](https://linkedin.com/in/xubdev) |
-|  🐙 GitHub  |   [xubdev](https://github.com/xubdev)    |
-|  📧 Email   |  [hello@xub.dev](mailto:hello@xub.dev)   |
+|  Platform   |                                  Link                                  |
+| :---------: | :--------------------------------------------------------------------: |
+| 🌐 Website  |                       [xub.dev](https://xub.dev)                       |
+| 🐦 Twitter  |                 [@xubdev](https://twitter.com/xubdev)                  |
+| 💼 LinkedIn | [xubdev](https://www.linkedin.com/in/xayotullo-xabibullaev-b7b1a83b0/) |
+|  🐙 GitHub  |               [xubdev](https://github.com/K1BERSTALKER)                |
+|  📧 Email   |               [hello@xub.dev](xabibullaev.dev@gmail.com)               |
 
 </div>
 
@@ -695,4 +695,3 @@ Resources and tools that made this project possible:
 ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=username.xub-portfolio)
 
 </div>
-
