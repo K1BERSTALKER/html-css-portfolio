@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XUB.DEV | Senior Frontend Engineer</title>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="./styles/tokens.css" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/utilities.css" />
+    <link rel="stylesheet" href="./styles/effects.css" />
+    <link rel="stylesheet" href="./styles/components.css" />
+    <link rel="stylesheet" href="./styles/sections.css" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?
+      family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&
+      family=Space+Grotesk:wght@300;400;500;600;700;800;900&
+      family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="site-wrapper">
+      <!-- Floating Background Blobs -->
+      <div class="blobs-container">
+        <div class="blob blob--primary"></div>
+        <div class="blob blob--purple"></div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="nav">
+        <div class="nav__inner glass">
+          <div class="nav__brand">
+            <div class="nav__logo">X</div>
+            <span class="nav__name font-display">XUB.DEV</span>
+          </div>
+          <div class="nav__links">
+            <a href="#home" class="nav__link">Home</a>
+            <a href="#skills" class="nav__link">Skills</a>
+            <a href="#projects" class="nav__link">Projects</a>
+            <a href="#contact" class="nav__link">Contact</a>
+          </div>
+          <div class="nav__actions">
+            <button
+              id="theme-btn"
+              class="theme-toggle"
+              aria-label="Toggle theme"
+            >
+              🌙
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <section id="home" class="hero">
+        <div class="hero__video-container">
+          <video autoplay loop muted playsinline class="hero__video">
+            <source
+              src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-elements-in-blue-9141-large.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <div class="hero__video-overlay"></div>
+        </div>
+        <div class="hero__content">
+          <div class="hero__badge glass">
+            <span class="pulse-dot">
+              <span class="pulse-dot__ring"></span>
+              <span class="pulse-dot__core"></span>
+            </span>
+            Available for new projects
+          </div>
+          <h1 class="hero__title font-display">
+            Creating <br />
+            <span class="text-gradient">Premium</span> Digital <br />
+            Experiences
+          </h1>
+          <p class="hero__subtitle">
+            Senior Frontend Engineer crafting high-performance, accessible, and
+            AI-powered web applications that users love.
+          </p>
+          <div class="hero__cta">
+            <a href="#projects" class="btn btn--primary">
+              View Projects
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="btn__icon"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </a>
+            <a href="#contact" class="btn btn--glass glass"
+              >Start a Conversation</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="skills-section">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-header__glow"></div>
+            <h2 class="section-header__title font-display">My Expertise</h2>
+            <p class="section-header__subtitle">
+              A deep dive into the technologies I use to build world-class
+              products.
+            </p>
+            <div class="section-header__divider">
+              <div class="divider-line divider-line--right"></div>
+              <div class="divider-dot"></div>
+              <div class="divider-line divider-line--left"></div>
+            </div>
+          </div>
+          <div id="skills-container" class="skills-grid"></div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="projects-section">
+        <div class="container container--wide">
+          <h2 class="projects-section__title font-display">
+            Featured Projects
+          </h2>
+          <div id="projects-container" class="projects-grid"></div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact-section">
+        <div class="container">
+          <div class="contact-layout">
+            <div class="contact-image">
+              <img
+                src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80&w=1200"
+                alt="Contact"
+              />
+            </div>
+            <div class="contact-form-wrapper glass">
+              <h3 class="contact-form__title font-display">Send Message</h3>
+              <form class="contact-form" id="contact-form">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  class="contact-form__input"
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  class="contact-form__input"
+                  required
+                />
+                <textarea
+                  placeholder="How can I help?"
+                  rows="4"
+                  class="contact-form__textarea"
+                  required
+                ></textarea>
+                <button type="submit" class="btn btn--submit">
+                  Send Request
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container container--wide footer__inner">
+          <div class="footer__grid">
+            <div class="footer__about">
+              <div class="footer__brand">
+                <div class="footer__logo">X</div>
+                <h2 class="footer__name font-display">XUB.DEV</h2>
+              </div>
+              <p class="footer__description">
+                Designing and developing modern digital products with a focus on
+                usability, accessibility, and high-performance engineering.
+              </p>
+              <div id="socials" class="footer__socials"></div>
+            </div>
+
+            <div class="footer__quick-links">
+              <h4 class="footer__heading">Quick Links</h4>
+              <ul id="footer-links" class="footer__link-list"></ul>
+            </div>
+
+            <div class="footer__office">
+              <h4 class="footer__heading">Office</h4>
+              <div class="footer__office-content">
+                <div class="footer__location">
+                  <p class="footer__label">Location</p>
+                  <p class="footer__value">
+                    Berlin, Germany <br />Remote Worldwide
+                  </p>
+                </div>
+                <div class="footer__status glass">
+                  <div class="footer__status-header">
+                    <div class="status-dot"></div>
+                    <span class="footer__status-label">Live Status</span>
+                  </div>
+                  <p class="footer__status-text">
+                    Currently accepting new projects for Q3 2026.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer__bottom">
+            <p class="footer__copyright">
+              © XUB.DEV // 2026 // ALL RIGHTS RESERVED
+            </p>
+            <div class="footer__legal">
+              <a href="#" class="footer__legal-link">Privacy</a>
+              <a href="#" class="footer__legal-link">Terms</a>
+              <a href="#" class="footer__legal-link">Cookies</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__dot-pattern"></div>
+      </footer>
+    </div>
+
+    <!-- JS Files -->
+    <script src="js/data.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XUB.DEV | Senior Frontend Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/utilities.css" />
+    <link rel="stylesheet" href="css/effects.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/sections.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --accent: #0ea5e9;
+        --accent-glow: rgba(14, 165, 233, 0.4);
+      }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        scroll-behavior: smooth;
+        transition: background-color 0.5s;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      .font-display {
+        font-family: "Space Grotesk", sans-serif;
+      }
+      .font-mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+      .dark .glass {
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .neon-border {
+        box-shadow: 0 0 15px var(--accent-glow);
+      }
+      .text-gradient {
+        background: linear-gradient(135deg, #0ea5e9 0%, #a855f7 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .bg-video-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+      }
+      .bg-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.15;
+        filter: grayscale(100%) brightness(0.9) contrast(1.1);
+      }
+      .dark .bg-video {
+        opacity: 0.3;
+        filter: grayscale(80%) brightness(0.5) contrast(1);
+      }
+      @keyframes blob {
+        0% {
+          transform: translate(0px, 0px) scale(1);
+        }
+        33% {
+          transform: translate(30px, -50px) scale(1.1);
+        }
+        66% {
+          transform: translate(-20px, 20px) scale(0.9);
+        }
+        100% {
+          transform: translate(0px, 0px) scale(1);
+        }
+      }
+      .animate-blob {
+        animation: blob 10s infinite;
+      }
+      .animation-delay-2000 {
+        animation-delay: 2s;
+      }
+      .animation-delay-4000 {
+        animation-delay: 4s;
+      }
+      .bento-card {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        border-radius: 1rem;
+      }
+      .bento-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border: 2px solid transparent;
+        border-radius: inherit;
+        transition: all 0.4s ease;
+        pointer-events: none;
+        z-index: 10;
+      }
+      .bento-card:hover::after {
+        border-color: rgba(14, 165, 233, 0.4);
+        background: radial-gradient(
+          circle at top right,
+          rgba(14, 165, 233, 0.05),
+          transparent 60%
+        );
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #334155;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #0ea5e9;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                400: "#3b82f6",
+                500: "#0ea5e9",
+                600: "#0284c7",
+              },
+              dark: {
+                700: "#1f2937",
+                800: "#111827",
+                950: "#0f172a",
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <!-- Theme toggle script -->
+  <script>
+    function toggleTheme() {
+      // Toggle the dark class on <html>
+      document.documentElement.classList.toggle("dark");
+
+      // Update button icon
+      const btn = document.getElementById("theme-btn");
+      if (btn) {
+        btn.textContent = document.documentElement.classList.contains("dark")
+          ? "☀️"
+          : "🌙";
+      }
+    }
+  </script>
+  <body
+    class="bg-slate-50 text-slate-900 dark:bg-dark-950 dark:text-slate-100 transition-colors duration-500"
+  >
+    <div class="relative min-h-screen">
+      <!-- Floating blobs -->
+      <div class="fixed inset-0 z-[-2] overflow-hidden pointer-events-none">
+        <div
+          class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary-500/10 dark:bg-primary-500/15 rounded-full blur-[120px] animate-blob"
+        ></div>
+        <div
+          class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-500/10 dark:bg-purple-500/15 rounded-full blur-[120px] animate-blob animation-delay-2000"
+        ></div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl">
+        <div
+          class="glass rounded-full px-6 py-3 flex justify-between items-center shadow-2xl border border-white/20 dark:border-white/5"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="w-8 h-8 bg-gradient-to-tr from-primary-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg -rotate-3 transition-transform hover:rotate-12 cursor-pointer"
+            >
+              X
+            </div>
+            <span
+              class="font-display font-bold text-lg tracking-tight dark:text-white hidden sm:block"
+              >XUB.DEV</span
+            >
+          </div>
+          <div
+            class="hidden md:flex items-center space-x-8 text-[11px] font-bold tracking-widest uppercase"
+          >
+            <a
+              href="#home"
+              class="text-slate-500 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-all hover:scale-110"
+              >Home</a
+            >
+            <a
+              href="#skills"
+              class="text-slate-500 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-all hover:scale-110"
+              >Skills</a
+            >
+            <a
+              href="#projects"
+              class="text-slate-500 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-all hover:scale-110"
+              >Projects</a
+            >
+            <a
+              href="#contact"
+              class="text-slate-500 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-400 transition-all hover:scale-110"
+              >Contact</a
+            >
+          </div>
+          <div class="flex items-center gap-4">
+            <button
+              id="theme-btn"
+              onclick="toggleTheme()"
+              class="p-2 rounded-lg bg-slate-200 dark:bg-dark-700 hover:ring-2 hover:ring-primary-500 transition-all focus:outline-none focus:ring-2 focus:ring-primary-600"
+            >
+              🌙
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <section
+        id="home"
+        class="relative min-h-screen flex items-center justify-center overflow-hidden"
+      >
+        <div class="bg-video-container">
+          <video autoplay loop muted playsinline class="bg-video">
+            <source
+              src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-elements-in-blue-9141-large.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-slate-50/20 via-slate-50/80 to-slate-50 dark:from-dark-950/20 dark:via-dark-950/80 dark:to-dark-950"
+          ></div>
+        </div>
+        <div class="max-w-5xl mx-auto px-4 text-center z-10">
+          <div
+            class="inline-flex items-center gap-3 px-5 py-2 mb-8 text-[11px] font-bold tracking-[0.2em] text-primary-600 uppercase glass rounded-full border-primary-500/20 shadow-xl"
+          >
+            <span class="relative flex h-2 w-2">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"
+              ></span>
+              <span
+                class="relative inline-flex rounded-full h-2 w-2 bg-primary-500"
+              ></span>
+            </span>
+            Available for new projects
+          </div>
+          <h1
+            class="text-6xl md:text-8xl lg:text-9xl font-display font-black mb-8 tracking-tighter leading-[0.9] dark:text-white uppercase"
+          >
+            Creating <br />
+            <span class="text-gradient">Premium</span> Digital <br />
+            Experiences
+          </h1>
+          <p
+            class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-12 font-medium tracking-tight leading-relaxed"
+          >
+            Senior Frontend Engineer crafting high-performance, accessible, and
+            AI-powered web applications that users love.
+          </p>
+          <div class="flex flex-col sm:flex-row justify-center gap-6">
+            <a
+              href="#projects"
+              class="group px-10 py-5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-2xl font-black transition-all shadow-2xl hover:scale-105 uppercase tracking-widest text-xs flex items-center gap-3"
+            >
+              View Projects
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 transform group-hover:translate-x-1 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </a>
+            <a
+              href="#contact"
+              class="px-10 py-5 glass text-slate-900 dark:text-white rounded-2xl font-black transition-all hover:scale-105 uppercase tracking-widest text-xs border-white/40 shadow-xl"
+              >Start a Conversation</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="py-24 bg-slate-50 dark:bg-dark-950">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="mb-24 text-center relative px-4">
+            <div
+              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary-500/5 blur-[100px] pointer-events-none"
+            ></div>
+            <h2
+              class="text-5xl md:text-7xl font-display font-black mb-8 tracking-tighter dark:text-white uppercase leading-none"
+            >
+              My Expertise
+            </h2>
+
+            <p
+              class="text-base md:text-lg text-slate-500 dark:text-slate-400 max-w-xl mx-auto font-medium leading-relaxed tracking-tight"
+            >
+              A deep dive into the technologies I use to build world-class
+              products.
+            </p>
+            <div class="flex items-center justify-center gap-6 mt-12">
+              <div
+                class="w-20 h-0.5 bg-gradient-to-r from-transparent to-slate-200 dark:to-dark-700 rounded-full"
+              ></div>
+              <div
+                class="w-2.5 h-2.5 rounded-full bg-primary-500 shadow-[0_0_15px_rgba(14,165,233,0.6)] animate-pulse"
+              ></div>
+              <div
+                class="w-20 h-0.5 bg-gradient-to-l from-transparent to-slate-200 dark:to-dark-700 rounded-full"
+              ></div>
+            </div>
+          </div>
+          <div
+            id="skills-container"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 auto-rows-[280px]"
+          >
+            <!-- <div
+              class="bento-card group p-10 glass rounded-[2.5rem] border border-transparent transition-all duration-500 flex flex-col justify-between overflow-hidden cursor-default hover:border-primary-500/50 hover:shadow-[0_0_30px_rgba(14,165,233,0.15)]"
+            >
+              <div class="text-6xl mb-6">⚛️</div>
+              <h3
+                class="font-display font-bold text-2xl mb-2 dark:text-white group-hover:text-primary-600 transition-colors"
+              >
+                React / Next.js
+              </h3>
+              <span
+                class="px-4 py-1.5 bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 text-[10px] font-black uppercase tracking-widest rounded-full group-hover:bg-primary-600 group-hover:text-white transition-all"
+                >Frontend</span
+              >
+            </div> -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section
+        id="projects"
+        class="py-32 bg-slate-100/50 dark:bg-dark-950/50 relative overflow-hidden"
+      >
+        <div class="max-w-7xl mx-auto px-4">
+          <h2
+            class="text-4xl font-display font-black mb-12 text-center dark:text-white"
+          >
+            Featured Projects
+          </h2>
+          <div
+            id="projects-container"
+            class="grid grid-cols-1 lg:grid-cols-2 gap-12"
+          >
+            <!-- Example Project -->
+            <!-- <div
+              class="group relative h-[500px] rounded-[3rem] overflow-hidden shadow-2xl border border-white/20 dark:border-white/5 bg-slate-900"
+            >
+              <img
+                src="https://picsum.photos/seed/eco/600/400"
+                alt="EcoSphere AI"
+                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+              />
+              <div class="absolute inset-0 p-12 flex flex-col justify-end">
+                <h3
+                  class="text-4xl font-display font-black text-white mb-4 uppercase tracking-tight group-hover:text-primary-400 transition-colors"
+                >
+                  EcoSphere AI
+                </h3>
+                <p
+                  class="text-slate-300 mb-8 max-w-lg line-clamp-2 text-base font-light leading-relaxed"
+                >
+                  A sustainability tracking platform using real-time sensor data
+                  and machine learning for carbon footprint reduction.
+                </p>
+              </div>
+            </div> -->
+            <!-- Repeat for other projects -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-32">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="flex flex-col lg:flex-row gap-8">
+            <div
+              class="lg:w-1/2 relative min-h-[500px] overflow-hidden rounded-2xl"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80&w=1200"
+                class="absolute inset-0 w-full h-full object-cover scale-110 animate-pulse"
+              />
+            </div>
+            <div
+              class="lg:w-1/2 p-12 bg-white dark:bg-dark-900/40 rounded-2xl glass"
+            >
+              <h3
+                class="text-3xl font-display font-black dark:text-white uppercase mb-4 tracking-tight"
+              >
+                Send Message
+              </h3>
+              <form class="space-y-6">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  class="w-full p-4 border-b-2 border-slate-100 dark:border-dark-700 bg-transparent outline-none text-slate-900 dark:text-white"
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  class="w-full p-4 border-b-2 border-slate-100 dark:border-dark-700 bg-transparent outline-none text-slate-900 dark:text-white"
+                />
+                <textarea
+                  placeholder="How can I help?"
+                  rows="4"
+                  class="w-full p-4 border-b-2 border-slate-100 dark:border-dark-700 bg-transparent outline-none text-slate-900 dark:text-white"
+                ></textarea>
+                <button
+                  class="w-full py-4 bg-primary-600 text-white font-black uppercase rounded-2xl hover:scale-105 transition-all"
+                >
+                  Send Request
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer
+        class="pt-32 pb-16 relative overflow-hidden bg-white dark:bg-dark-950 border-t border-slate-100 dark:border-dark-950/100"
+      >
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-16 mb-24">
+            <div class="md:col-span-6">
+              <div class="flex items-center gap-4 mb-10">
+                <div
+                  class="w-14 h-14 bg-gradient-to-tr from-primary-600 to-purple-600 rounded-2xl flex items-center justify-center text-white font-black text-3xl shadow-2xl -rotate-6 transition-transform hover:rotate-6 cursor-pointer"
+                >
+                  X
+                </div>
+                <h2
+                  class="font-display font-black text-4xl tracking-tighter dark:text-white uppercase"
+                >
+                  XUB.DEV
+                </h2>
+              </div>
+              <p
+                class="text-slate-500 dark:text-slate-400 max-w-md font-medium text-lg leading-relaxed mb-10"
+              >
+                Designing and developing modern digital products with a focus on
+                usability, accessibility, and high-performance engineering.
+              </p>
+              <div id="socials" class="flex flex-wrap gap-5"></div>
+            </div>
+
+            <div class="md:col-span-3">
+              <h4
+                class="font-black text-[11px] uppercase tracking-[0.3em] mb-10 text-primary-600"
+              >
+                Quick Links
+              </h4>
+              <ul
+                id="footer-links"
+                class="space-y-6 text-base font-bold text-slate-600 dark:text-slate-300"
+              ></ul>
+            </div>
+
+            <div class="md:col-span-3">
+              <h4
+                class="font-black text-[11px] uppercase tracking-[0.3em] mb-10 text-primary-600"
+              >
+                Office
+              </h4>
+              <div class="space-y-8">
+                <div>
+                  <p
+                    class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3"
+                  >
+                    Location
+                  </p>
+                  <p class="text-lg font-bold dark:text-white">
+                    Berlin, Germany <br />
+                    Remote Worldwide
+                  </p>
+                </div>
+                <div class="p-6 glass rounded-2xl border-white/10 shadow-xl">
+                  <div class="flex items-center gap-3 mb-2">
+                    <div
+                      class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"
+                    ></div>
+                    <span
+                      class="text-[10px] font-black uppercase tracking-widest text-primary-600"
+                      >Live Status</span
+                    >
+                  </div>
+                  <p class="text-sm font-bold dark:text-white">
+                    Currently accepting new projects for Q3 2026.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="pt-10 border-t border-slate-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-8"
+          >
+            <p
+              class="text-[10px] font-bold text-slate-400 tracking-[0.4em] uppercase"
+            >
+              © XUB.DEV // 2026 // ALL RIGHTS RESERVED
+            </p>
+            <div
+              class="flex gap-10 text-[10px] font-black tracking-widest text-slate-400 uppercase"
+            >
+              <a href="#" class="hover:text-primary-600 transition-colors"
+                >Privacy</a
+              >
+              <a href="#" class="hover:text-primary-600 transition-colors"
+                >Terms</a
+              >
+              <a href="#" class="hover:text-primary-600 transition-colors"
+                >Cookies</a
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          class="absolute inset-0 opacity-[0.05] pointer-events-none"
+          style="
+            background-image: radial-gradient(#0ea5e9 0.5px, transparent 0.5px);
+            background-size: 32px 32px;
+          "
+        ></div>
+      </footer>
+    </div>
+    <script>
+      const socials = ["Twitter", "GitHub", "LinkedIn", "Dribbble"];
+      const socialsContainer = document.getElementById("socials");
+
+      socials.forEach((social) => {
+        // Create button
+        const btn = document.createElement("button");
+        btn.className =
+          "px-6 py-2.5 glass rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-primary-600 hover:text-white transition-all shadow-md";
+        btn.textContent = social; // Set the button text
+
+        // Append button to container
+        socialsContainer.appendChild(btn);
+      });
+
+      const footerLinks = ["Home", "Skills", "Projects", "Contact"];
+      const footerLink = document.getElementById("footer-links");
+
+      footerLinks.forEach((item) => {
+        // Create list item
+        const li = document.createElement("li");
+
+        // Create link
+        const a = document.createElement("a");
+        a.href = `#${item.toLowerCase()}`;
+        a.className =
+          "hover:text-primary-600 transition-colors flex items-center gap-2 group";
+
+        // Create the span for the hover effect
+        const span = document.createElement("span");
+        span.className =
+          "w-0 group-hover:w-4 h-0.5 bg-primary-500 transition-all";
+
+        // Append span and text to the link
+        a.appendChild(span);
+        a.appendChild(document.createTextNode(item));
+
+        // Append link to li, then li to ul
+        li.appendChild(a);
+        footerLink.appendChild(li);
+      });
+
+      // Your data
+      const PROJECTS = [
+        {
+          id: 1,
+          title: "EcoSphere AI",
+          description:
+            "A sustainability tracking platform using real-time sensor data and machine learning for carbon footprint reduction.",
+          tags: ["React", "TypeScript", "D3.js", "Gemini API"],
+          imageUrl: "https://picsum.photos/seed/eco/600/400",
+          link: "#",
+        },
+        {
+          id: 2,
+          title: "Lumina Dashboard",
+          description:
+            "Enterprise-grade analytics dashboard with customizable widgets and ultra-low latency data synchronization.",
+          tags: ["Next.js", "Tailwind CSS", "Redux Toolkit"],
+          imageUrl: "https://picsum.photos/seed/dashboard/600/400",
+          link: "#",
+        },
+        {
+          id: 3,
+          title: "CryptoFlow Mobile",
+          description:
+            "Decentralized wallet management with integrated swapping and NFT gallery visualization.",
+          tags: ["React Native", "Web3.js", "Framer Motion"],
+          imageUrl: "https://picsum.photos/seed/crypto/600/400",
+          link: "#",
+        },
+      ];
+
+      const SKILLS = [
+        { name: "React / Next.js", category: "frontend", icon: "⚛️" },
+        { name: "TypeScript", category: "frontend", icon: "📘" },
+        { name: "Tailwind CSS", category: "frontend", icon: "🎨" },
+        { name: "Node.js", category: "backend", icon: "🟢" },
+        { name: "PostgreSQL", category: "backend", icon: "🐘" },
+        { name: "Gemini / LLMs", category: "tools", icon: "✨" },
+        { name: "Docker", category: "tools", icon: "🐳" },
+        { name: "Unit Testing", category: "tools", icon: "🧪" },
+      ];
+
+      // Render Projects
+      const projectsContainer = document.getElementById("projects-container");
+
+      PROJECTS.forEach((project) => {
+        const projectDiv = document.createElement("div");
+        projectDiv.className =
+          "group relative h-[500px] rounded-[3rem] overflow-hidden shadow-2xl border border-white/20 dark:border-white/5 bg-slate-900";
+
+        projectDiv.innerHTML = `
+    <img src="${project.imageUrl}" alt="${project.title}" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-100" />
+    <div class="absolute inset-0 p-12 flex flex-col justify-end">
+      <h3 class="text-4xl font-display font-black text-white mb-4 uppercase tracking-tight group-hover:text-primary-400 transition-colors">${project.title}</h3>
+      <p class="text-slate-300 mb-8 max-w-lg line-clamp-2 text-base font-light leading-relaxed">${project.description}</p>
+    </div>
+  `;
+
+        projectsContainer.appendChild(projectDiv);
+      });
+
+      // Render Skills
+      const skillsContainer = document.getElementById("skills-container");
+
+      SKILLS.forEach((skill, idx) => {
+        const skillDiv = document.createElement("div");
+
+        // Add conditional class for col-span
+        const colSpanClass = idx === 0 || idx === 5 ? "lg:col-span-2" : "";
+
+        skillDiv.className = `
+    bento-card group p-10 glass rounded-[2.5rem] border-2 border-transparent
+    transition-all duration-500 flex flex-col justify-between overflow-hidden
+    cursor-default hover:border-primary-500/50
+    hover:shadow-[0_0_30px_rgba(14,165,233,0.15)] ${colSpanClass}
+    relative
+  `;
+
+        skillDiv.innerHTML = `
+    <!-- Background Icon Effect -->
+    <div class="bento-bg-icon absolute -right-8 -bottom-8 text-[12rem] opacity-[0.1] dark:opacity-[0.06] transition-all duration-700 pointer-events-none group-hover:rotate-12 group-hover:scale-125 group-hover:text-primary-500">
+      ${skill.icon}
+    </div>
+
+    <div class="relative">
+      <div class="text-6xl mb-6 transform group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500 origin-left">
+        ${skill.icon}
+      </div>
+      <h3 class="font-display font-bold text-2xl mb-2 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+        ${skill.name}
+      </h3>
+    </div>
+
+    <div class="relative">
+      <span class="px-4 py-1.5 bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 text-[10px] font-black uppercase tracking-widest rounded-full group-hover:bg-primary-600 group-hover:text-white transition-all">
+        ${skill.category.charAt(0).toUpperCase() + skill.category.slice(1)}
+      </span>
+    </div>
+  `;
+
+        skillsContainer.appendChild(skillDiv);
+      });
+    </script>
+  </body>
+</html>
